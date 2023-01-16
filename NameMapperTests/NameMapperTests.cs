@@ -19,4 +19,10 @@ public class Tests
     {
         mapper.ConvertCombinationLetter("micheal").Should().Be("mi8eal");
     }
+
+    [Test]
+    public void Should_Convert_Single_Letter_To_Corresponding_Numerical_Value()
+    {
+        mapper.ConvertSingleLetter("paz").Should().Be("17 1 7");
+    }
 }
