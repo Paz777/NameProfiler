@@ -14,10 +14,18 @@ public class Tests
         mapper = new NameMapping();
     }
 
-    [Test]
-    public void Should_Convert_Combination_Letter_To_Corresponding_Numerical_Value()
+    [TestCase("micheal", "mi8eal")]
+    [TestCase("michealtz", "mi8eal18")]
+    public void Should_Convert_Combination_Letter_To_Corresponding_Numerical_Value(string name, string nameConverted)
     {
-        mapper.ConvertCombinationLetter("micheal").Should().Be("mi8eal");
+        mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);
+    }
+
+    [TestCase("Micheal", "mi8eal")]
+    [TestCase("MicHeal", "mi8eal")]
+    public void Should_Convert_Combination_Letter_To_Corresponding_Numerical_Value_With_Name_Using_Capital_Letters(string name, string nameConverted)
+    {
+        mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);
     }
 
     [Test]

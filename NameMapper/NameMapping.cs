@@ -49,8 +49,8 @@ namespace NameMapper
 		{
             for (int i = 0; i < name.Length - 1; i++)
             {
+                name = name.ToLower();
                 string nameLetters = name[i] + "" + name[i + 1];
-                nameLetters = nameLetters.ToLower();
                 if (combinationLetters.ContainsKey(nameLetters))
                 {
                     name = name.Replace(nameLetters, combinationLetters[nameLetters].ToString());
