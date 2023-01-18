@@ -27,11 +27,26 @@ public class Tests
         mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);
     }
 
+    [TestCase("1234", "1234", TestName = "Should_Not_Convert_Numerical_Value")]
+    [TestCase("", "", TestName = "Should_Not_Convert_Empty_String")]
+    [TestCase("talar 45%", "22lar 45%", TestName = "Should_Not_Convert_Other_Invalid_Characters")]
+    [TestCase(null, null, TestName = "Should_Not_Convert_Null")]
+    public void Should_Not_Convert_Invalid_Values(string name, string nameConverted)
+    {
+        mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);
+    }
+
     [TestCase("Micheal", "mi8eal")]
     [TestCase("MicHeAl", "mi8eal")]
     public void Should_Convert_Combination_Letter_To_Corresponding_Numerical_Value_With_Name_Using_Capital_Letters(string name, string nameConverted)
     {
         mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);
+    }
+
+    [Test, Ignore("not completed")]
+    public void Should_Convert_Last_Letter_To_Corresponding_Numerical_Value()
+    {
+        //mapper.ConvertLastLetter("Pam").Should().Be("Pa12");
     }
 
     [Test]

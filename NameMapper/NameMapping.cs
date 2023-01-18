@@ -47,16 +47,24 @@ namespace NameMapper
 
         public string ConvertCombinationLetter(string name)
 		{
-            for (int i = 0; i < name.Length - 1; i++)
+            if (!string.IsNullOrEmpty(name))
             {
-                name = name.ToLower();
-                string nameLetters = name[i] + "" + name[i + 1];
-                if (combinationLetters.ContainsKey(nameLetters))
+                for (int i = 0; i < name.Length - 1; i++)
                 {
-                    name = name.Replace(nameLetters, combinationLetters[nameLetters].ToString());
+                    name = name.ToLower();
+                    string nameLetters = name[i] + "" + name[i + 1];
+                    if (combinationLetters.ContainsKey(nameLetters))
+                    {
+                        name = name.Replace(nameLetters, combinationLetters[nameLetters].ToString());
+                    }
                 }
             }
             return name;
+        }
+
+        public string ConvertLastLetter(string name)
+        {
+            throw new NotImplementedException();
         }
 
         public string ConvertSingleLetter(string name)
