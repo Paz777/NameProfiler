@@ -43,12 +43,16 @@ public class Tests
         mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);
     }
 
-    [Test]
-    public void Should_Convert_Last_Letter_To_Corresponding_Numerical_Value()
+    //Indrabp
+    [TestCase("Phillip","Philli12")]
+    [TestCase("Pam", "Pa12")]
+    [TestCase("Indrabp", "Indrab12")]
+    public void Should_Convert_Last_Letter_To_Corresponding_Numerical_Value(string name, string nameConverted)
     {
-        mapper.ConvertLastLetter("Pam").Should().Be("Pa12");
+        mapper.ConvertLastLetter(name).Should().Be(nameConverted);
     }
 
+    //mi8eal
     [Test]
     public void Should_Convert_Single_Letter_To_Corresponding_Numerical_Value()
     {
