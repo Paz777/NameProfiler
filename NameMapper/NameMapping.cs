@@ -15,6 +15,12 @@ namespace NameMapper
             {"th",22},
         };
 
+        Dictionary<string, int> lastLetter = new Dictionary<string, int>()
+        {
+            {"m",12},
+            {"p",12},
+        };
+
         Dictionary<string, int> singleLetters = new Dictionary<string, int>()
         {
             {"a",1},
@@ -64,7 +70,7 @@ namespace NameMapper
 
         public string ConvertLastLetter(string name)
         {
-            throw new NotImplementedException();
+            return name.Replace(name.Last().ToString(), lastLetter[name.Last().ToString()].ToString());
         }
 
         public string ConvertSingleLetter(string name)

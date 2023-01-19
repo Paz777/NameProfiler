@@ -43,10 +43,10 @@ public class Tests
         mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);
     }
 
-    [Test, Ignore("not completed")]
+    [Test]
     public void Should_Convert_Last_Letter_To_Corresponding_Numerical_Value()
     {
-        //mapper.ConvertLastLetter("Pam").Should().Be("Pa12");
+        mapper.ConvertLastLetter("Pam").Should().Be("Pa12");
     }
 
     [Test]
