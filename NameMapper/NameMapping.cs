@@ -55,27 +55,28 @@ namespace NameMapper
 		{
             if (!string.IsNullOrEmpty(name))
             {
-                for (int i = 0; i < name.Length - 1; i++)
+                var spacedName = string.Join("", name.Select(letter => letter + " ").ToArray()).ToLower().Trim();
+                for (int i = 0; i < spacedName.Length - 2; i++)
                 {
-                    name = name.ToLower();
-                    string nameLetters = name[i] + "" + name[i + 1];
+                    string nameLetters = spacedName[i] + "" + spacedName[i + 2];
                     if (combinationLetters.ContainsKey(nameLetters))
                     {
-                        name = name.Replace(nameLetters, combinationLetters[nameLetters].ToString());
+                        spacedName = spacedName.Replace(spacedName[i] + " " + spacedName[i + 2], combinationLetters[nameLetters].ToString());
                     }
                 }
+                name = spacedName;
             }
             return name;
         }
 
         public string ConvertLastLetter(string name)
         {
-            return name.Replace(name.Last().ToString(), lastLetter[name.Last().ToString()].ToString());
+            return name.Substring(0, name.Length - 1) + lastLetter[name.Last().ToString()].ToString();
         }
 
         public string ConvertSingleLetter(string name)
         {
-            return string.Join(" ", name.Select(letter => singleLetters[letter.ToString()]));
+            return string.Join(" ", name.Select(letter => Char.IsDigit(letter) ? letter-48: singleLetters[letter.ToString()]));
         }
     }
 }
