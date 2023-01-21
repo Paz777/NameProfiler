@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.Metrics;
+using System.Linq;
 
 namespace NameMapper
 {
@@ -76,7 +77,20 @@ namespace NameMapper
 
         public string ConvertSingleLetter(string name)
         {
-            return string.Join(" ", name.Select(letter => Char.IsDigit(letter) ? letter-48: singleLetters[letter.ToString()]));
+            string convertedName = "";
+            string[] nameSplit = name.Split(" ");
+            for (int i = 0; i < nameSplit.Length; i++)
+            {
+                if (int.TryParse(nameSplit[i], out int number))
+                {
+                    convertedName += nameSplit[i] + " ";
+                }
+                else if (nameSplit[i] != " ")
+                {
+                    convertedName += singleLetters[nameSplit[i]] + " ";
+                }
+            }
+            return convertedName.Trim();
         }
     }
 }

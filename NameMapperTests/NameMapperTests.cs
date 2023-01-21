@@ -56,13 +56,13 @@ public class Tests
         mapper.ConvertLastLetter(name).Should().Be(nameConverted);
     }
 
-    //[TestCase("m i 8 e a l","13 10 8 5 1 12")]
-    //[TestCase("m i 0 e a l", "13 10 0 5 1 12")]
+    [TestCase("m i 8 e a l","13 10 8 5 1 12")]
+    [TestCase("m i 1 e a l", "13 10 1 5 1 12")]
     //[TestCase("mi3eal", "13 10 3 5 1 12")]
     //[TestCase("mi5eal", "13 10 5 5 1 12")]
     //[TestCase("mi13eal", "13 10 13 5 1 12")]
-    //[TestCase("mi22eal", "13 10 22 5 1 12")]
-    [TestCase("paz","17 1 7")]
+    [TestCase("m i 22 e a l", "13 10 22 5 1 12")]
+    [TestCase("p a z","17 1 7")]
     public void Should_Convert_Single_Letter_To_Corresponding_Numerical_Value(string name, string nameConverted)
     {
         mapper.ConvertSingleLetter(name).Should().Be(nameConverted);
