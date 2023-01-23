@@ -48,9 +48,9 @@ public class Tests
         mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);
     }
 
-    [TestCase("p h i l l i p","p h i l l i 12")]
-    [TestCase("p a m", "p a 12")]
-    [TestCase("i n d r a b p", "i n d r a b 12")]
+    [TestCase("p h i l l i p","p h i l l i 12", TestName = "Should_Convert_Last_Letter_P_Not_The_First-Letter_To_Corresponding_Numerical_Value")]
+    [TestCase("p a m", "p a 12", TestName = "Should_Convert_Last_Letter_M_To_Corresponding_Numerical_Value")]
+    [TestCase("i n d r 5 p", "i n d r 5 12", TestName = "Should_Convert_Last_Letter_P_Not_Other_Numbers_To_Corresponding_Numerical_Value")]
     public void Should_Convert_Last_Letter_To_Corresponding_Numerical_Value(string name, string nameConverted)
     {
         mapper.ConvertLastLetter(name).Should().Be(nameConverted);
@@ -58,9 +58,6 @@ public class Tests
 
     [TestCase("m i 8 e a l","13 10 8 5 1 12")]
     [TestCase("m i 1 e a l", "13 10 1 5 1 12")]
-    //[TestCase("mi3eal", "13 10 3 5 1 12")]
-    //[TestCase("mi5eal", "13 10 5 5 1 12")]
-    //[TestCase("mi13eal", "13 10 13 5 1 12")]
     [TestCase("m i 22 e a l", "13 10 22 5 1 12")]
     [TestCase("p a z","17 1 7")]
     public void Should_Convert_Single_Letter_To_Corresponding_Numerical_Value(string name, string nameConverted)
