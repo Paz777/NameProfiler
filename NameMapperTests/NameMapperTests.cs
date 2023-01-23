@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using NameMapper;
+using NameMapper.Model;
 using FluentAssertions;
 
 namespace NameMapperTests;
@@ -48,7 +49,7 @@ public class Tests
         mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);
     }
 
-    [TestCase("p h i l l i p","p h i l l i 12", TestName = "Should_Convert_Last_Letter_P_Not_The_First-Letter_To_Corresponding_Numerical_Value")]
+    [TestCase("p h i l l i p","p h i l l i 12", TestName = "Should_Convert_Last_Letter_P_Not_The_First_Letter_To_Corresponding_Numerical_Value")]
     [TestCase("p a m", "p a 12", TestName = "Should_Convert_Last_Letter_M_To_Corresponding_Numerical_Value")]
     [TestCase("i n d r 5 p", "i n d r 5 12", TestName = "Should_Convert_Last_Letter_P_Not_Other_Numbers_To_Corresponding_Numerical_Value")]
     public void Should_Convert_Last_Letter_To_Corresponding_Numerical_Value(string name, string nameConverted)
@@ -56,12 +57,26 @@ public class Tests
         mapper.ConvertLastLetter(name).Should().Be(nameConverted);
     }
 
-    [TestCase("m i 8 e a l","13 10 8 5 1 12")]
-    [TestCase("m i 1 e a l", "13 10 1 5 1 12")]
-    [TestCase("m i 22 e a l", "13 10 22 5 1 12")]
-    [TestCase("p a z","17 1 7")]
+    [TestCase("m i 8 e a l","13 10 8 5 1 12", TestName = "Should_Convert_All_Single_Letters_Not_Numbers_To_Corresponding_Numerical_Value")]
+    [TestCase("m i 22 e a l", "13 10 22 5 1 12", TestName = "Should_Convert_All_Single_Letters_Not_Double_Digit_Numbers_To_Corresponding_Numerical_Value")]
+    [TestCase("p a z","17 1 7", TestName = "Should_Convert_All_Single_Letters_To_Corresponding_Numerical_Value")]
     public void Should_Convert_Single_Letter_To_Corresponding_Numerical_Value(string name, string nameConverted)
     {
         mapper.ConvertSingleLetter(name).Should().Be(nameConverted);
+    }
+
+    [TestCase("13 10 8 1 5 12 6 10 12 12 10 1 13 15 1 13 17 15 6 14", Ignore = "Still work in progress")]
+    public void Should_Allocate_Numbers_Sequentially_To_The_Corresponding_Life_Areas(string numbers)
+    {
+        LifeAreas lifeAreas1 = new LifeAreas();
+        LifeAreasCalculator lifeAreasCalculator1 = new LifeAreasCalculator();
+
+        lifeAreas1 = lifeAreasCalculator1.AllocateNumbersToLifeAreas(numbers);
+        lifeAreas1.WorldlyChallenges.Should().Be("11-2");
+        lifeAreas1.SpiritualChallenges.Should().Be("13-4");
+        lifeAreas1.WorldlyTalents.Should().Be("21-3");
+        lifeAreas1.SpiritualTalents.Should().Be("8-8");
+        lifeAreas1.WordlyGoals.Should().Be("5-5");
+        lifeAreas1.SpiritualGoals.Should().Be("10-1");
     }
 }
