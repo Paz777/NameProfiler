@@ -65,7 +65,7 @@ public class Tests
         mapper.ConvertSingleLetter(name).Should().Be(nameConverted);
     }
 
-    [TestCase("13 10 8 1 5 12 6 10 12 12 10 1 13 15 1 13 17 15 6 14", Ignore = "Still work in progress")]
+    [TestCase("13 10 8 1 5 12 6 10 12 12 10 1 13 15 1 13 17 15 6 14")]
     public void Should_Allocate_Numbers_Sequentially_To_The_Corresponding_Life_Areas(string numbers)
     {
         LifeAreas lifeAreas1 = new LifeAreas();
