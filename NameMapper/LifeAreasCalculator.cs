@@ -6,6 +6,7 @@ namespace NameMapper
 	public class LifeAreasCalculator
 	{
         LifeAreas lifeArea;
+
         public LifeAreasCalculator()
         {
             lifeArea = new LifeAreas();

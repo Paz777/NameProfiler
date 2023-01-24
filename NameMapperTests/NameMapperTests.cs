@@ -65,18 +65,19 @@ public class Tests
         mapper.ConvertSingleLetter(name).Should().Be(nameConverted);
     }
 
-    [TestCase("13 10 8 1 5 12 6 10 12 12 10 1 13 15 1 13 17 15 6 14")]
-    public void Should_Allocate_Numbers_Sequentially_To_The_Corresponding_Life_Areas(string numbers)
+    [TestCase("13 10 8 1 5 12 6 10 12 12 10 1 13 15 1 13 17 15 6 14", "11-2", "13-4", "21-3", "8-8", "5-5", "10-1")]
+    public void Should_Allocate_Numbers_Sequentially_To_The_Corresponding_Life_Areas(string numbers, string worldlyChallenges,
+        string spiritualChallenges, string worldlyTalents, string spiritualTalents, string wordlyGoals, string spiritualGoals)
     {
         LifeAreas lifeAreas1 = new LifeAreas();
         LifeAreasCalculator lifeAreasCalculator1 = new LifeAreasCalculator();
 
         lifeAreas1 = lifeAreasCalculator1.AllocateNumbersToLifeAreas(numbers);
-        lifeAreas1.WorldlyChallenges.Should().Be("11-2");
-        lifeAreas1.SpiritualChallenges.Should().Be("13-4");
-        lifeAreas1.WorldlyTalents.Should().Be("21-3");
-        lifeAreas1.SpiritualTalents.Should().Be("8-8");
-        lifeAreas1.WordlyGoals.Should().Be("5-5");
-        lifeAreas1.SpiritualGoals.Should().Be("10-1");
+        lifeAreas1.WorldlyChallenges.Should().Be(worldlyChallenges);
+        lifeAreas1.SpiritualChallenges.Should().Be(spiritualChallenges);
+        lifeAreas1.WorldlyTalents.Should().Be(worldlyTalents);
+        lifeAreas1.SpiritualTalents.Should().Be(spiritualTalents);
+        lifeAreas1.WordlyGoals.Should().Be(wordlyGoals);
+        lifeAreas1.SpiritualGoals.Should().Be(spiritualGoals);
     }
 }
