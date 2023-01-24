@@ -5,83 +5,52 @@ namespace NameMapper
 {
 	public class LifeAreasCalculator
 	{
-        LifeAreas la;
+        LifeAreas lifeArea;
         public LifeAreasCalculator()
         {
-            la = new LifeAreas();
+            lifeArea = new LifeAreas();
         }
 
         public LifeAreas AllocateNumbersToLifeAreas(string numbers)
         {
-            string numbersCopy = numbers;
             string WorldlyChallenges = "";
             string SpiritualChallenges = "";
             string WorldlyTalents = "";
             string SpiritualTalents = "";
             string WordlyGoals ="";
             string SpiritualGoals = "";
-            int variableIndex = 0;
+            int lifeAreaPosition = 0;
+
             foreach (string number in numbers.Split(' '))
             {
-                variableIndex ++;
-                if (variableIndex == 1) WorldlyChallenges += number + " ";
-                else if (variableIndex == 2) SpiritualChallenges += number + " ";
-                else if (variableIndex == 3) WorldlyTalents += number + " ";
-                else if (variableIndex == 4) SpiritualTalents += number + " ";
-                else if (variableIndex == 5) WordlyGoals += number + " ";
-                else if (variableIndex == 6) { SpiritualGoals += number + " "; variableIndex = 0; }
+                lifeAreaPosition ++;
+                switch (lifeAreaPosition)
+                {
+                    case 1: WorldlyChallenges += number + " "; break;
+                    case 2: SpiritualChallenges += number + " "; break;
+                    case 3: WorldlyTalents += number + " "; break;
+                    case 4: SpiritualTalents += number + " "; break;
+                    case 5: WordlyGoals += number + " "; break;
+                    case 6: SpiritualGoals += number + " "; lifeAreaPosition = 0; break;
+                };
             }
-            int sum = 0;
-            foreach(string number in WorldlyChallenges.Trim().Split(' '))
-            {
-                sum += int.Parse(number);
-            }
-            if (sum > 22) sum = sum.ToString().Sum(x => Int32.Parse(x.ToString()));
-            WorldlyChallenges = sum.ToString() + "-" + ((sum.ToString().Length>1) ? sum.ToString().Sum(x => Int32.Parse(x.ToString())) : sum.ToString());
-            sum = 0;
-            foreach (string number in SpiritualChallenges.Trim().Split(' '))
-            {
-                sum += int.Parse(number);
-            }
-            if (sum > 22) sum =  sum.ToString().Sum(x=>Int32.Parse(x.ToString()));
-            SpiritualChallenges = sum.ToString() + "-" + ((sum.ToString().Length > 1) ? sum.ToString().Sum(x => Int32.Parse(x.ToString())) : sum.ToString());
-            sum = 0;
-            foreach (string number in WorldlyTalents.Trim().Split(' '))
-            {
-                sum += int.Parse(number);
-            }
-            if (sum > 22) sum = sum.ToString().Sum(x => Int32.Parse(x.ToString()));
-            WorldlyTalents = sum.ToString() + "-" + ((sum.ToString().Length > 1) ? sum.ToString().Sum(x => Int32.Parse(x.ToString())) : sum.ToString());
-            sum = 0;
-            foreach (string number in SpiritualTalents.Trim().Split(' '))
-            {
-                sum += int.Parse(number);
-            }
-            if (sum > 22) sum = sum.ToString().Sum(x => Int32.Parse(x.ToString()));
-            SpiritualTalents = sum.ToString() + "-" + ((sum.ToString().Length > 1) ? sum.ToString().Sum(x => Int32.Parse(x.ToString())) : sum.ToString());
-            sum = 0;
-            foreach (string number in WordlyGoals.Trim().Split(' '))
-            {
-                sum += int.Parse(number);
-            }
-            if (sum > 22) sum = sum.ToString().Sum(x => Int32.Parse(x.ToString()));
-            WordlyGoals = sum.ToString() + "-" + ((sum.ToString().Length > 1) ? sum.ToString().Sum(x => Int32.Parse(x.ToString())) : sum.ToString());
-            sum = 0;
-            foreach (string number in SpiritualGoals.Trim().Split(' '))
-            {
-                sum += int.Parse(number);
-            }
-            if (sum > 22) sum = sum.ToString().Sum(x => Int32.Parse(x.ToString()));
-            SpiritualGoals = sum.ToString() + "-" + ((sum.ToString().Length > 1) ? sum.ToString().Sum(x => Int32.Parse(x.ToString())) : sum.ToString());
 
-            la.WorldlyChallenges = WorldlyChallenges;
-            la.SpiritualChallenges = SpiritualChallenges;
-            la.WorldlyTalents = WorldlyTalents;
-            la.SpiritualTalents = SpiritualTalents;
-            la.WordlyGoals = WordlyGoals;
-            la.SpiritualGoals = SpiritualGoals;
+            lifeArea.WorldlyChallenges = CalculateLifeArea(WorldlyChallenges);
+            lifeArea.SpiritualChallenges = CalculateLifeArea(SpiritualChallenges);
+            lifeArea.WorldlyTalents = CalculateLifeArea(WorldlyTalents);
+            lifeArea.SpiritualTalents = CalculateLifeArea(SpiritualTalents);
+            lifeArea.WordlyGoals = CalculateLifeArea(WordlyGoals);
+            lifeArea.SpiritualGoals = CalculateLifeArea(SpiritualGoals);
 
-            return la;
+            return lifeArea;
         }
-     }
+
+        private string CalculateLifeArea(string lifeArea)
+        {
+            int sum = lifeArea.Trim().Split(' ').Sum(x => Int32.Parse(x.ToString()));
+            if (sum > 22)
+                sum = sum.ToString().Sum(x => Int32.Parse(x.ToString()));
+            return sum.ToString() + "-" + sum.ToString().Sum(x => Int32.Parse(x.ToString()));
+        }
+    }
 }
