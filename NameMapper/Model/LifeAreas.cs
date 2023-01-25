@@ -2,13 +2,13 @@
 {
 	public class LifeAreas
 	{
-		public string WorldlyChallenges;
-        public string SpiritualChallenges;
-        public string WorldlyTalents;
-        public string SpiritualTalents;
-        public string WordlyGoals;
-        public string SpiritualGoals;
-        public string SoulDestiny;
+		public string WorldlyChallenges = string.Empty;
+        public string SpiritualChallenges = string.Empty;
+        public string WorldlyTalents = string.Empty;
+        public string SpiritualTalents = string.Empty;
+        public string WordlyGoals = string.Empty;
+        public string SpiritualGoals = string.Empty;
+        public string SoulDestiny = string.Empty;
 
         public LifeAreas()
 		{

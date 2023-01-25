@@ -6,6 +6,9 @@ namespace NameMapper
 	public class LifeAreasCalculator
 	{
         LifeAreas lifeArea;
+        const int SPECIAL_CASE_NO_19 = 19;
+        const int SPECIAL_CASE_NO_22 = 22;
+        const int RIGHT_HAND_NUMBER_DEFAULT_1 = 1;
 
         public LifeAreasCalculator()
         {
@@ -61,7 +64,7 @@ namespace NameMapper
             var leftSoulDestinyNumber = RecalculateIfNumberGreaterThan22(leftSoulDestinyTotal);
             var rightSoulDestinyNumber = RecalculateIfNumberGreaterThan22(rightSoulDestinyTotal);
 
-            return leftSoulDestinyNumber + "-" + rightSoulDestinyNumber;
+            return leftSoulDestinyNumber + "-" + (leftSoulDestinyNumber == SPECIAL_CASE_NO_19 ? RIGHT_HAND_NUMBER_DEFAULT_1 : rightSoulDestinyNumber);
         }
 
         private string CalculateLifeArea(string lifeArea)
@@ -73,12 +76,12 @@ namespace NameMapper
 
         private int RecalculateIfNumberEqualTo19(int number)
         {
-            return (number == 19) ? 1 : number.ToString().Sum(x => Int32.Parse(x.ToString()));
+            return (number == SPECIAL_CASE_NO_19) ? RIGHT_HAND_NUMBER_DEFAULT_1 : number.ToString().Sum(x => Int32.Parse(x.ToString()));
         }
 
         private int RecalculateIfNumberGreaterThan22(int number)
         {
-            return (number > 22) ? number.ToString().Sum(x => Int32.Parse(x.ToString())) : number;
+            return (number > SPECIAL_CASE_NO_22) ? number.ToString().Sum(x => Int32.Parse(x.ToString())) : number;
         }
     }
 }

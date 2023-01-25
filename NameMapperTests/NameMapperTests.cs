@@ -84,6 +84,7 @@ public class Tests
     }
 
     [TestCase("4-4", "7-7", "9-9", "10-1", "7-7", "8-8", "9-9")]
+    [TestCase("4-2", "3-2", "2-2", "5-2", "3-1", "2-1", "19-1")]
     public void Should_Caculate_Numbers_For_Soul_Destiny(string worldlyChallenges, string spiritualChallenges, string worldlyTalents,
         string spiritualTalents, string wordlyGoals, string spiritualGoals, string expecetdSoulDestiny)
     {
