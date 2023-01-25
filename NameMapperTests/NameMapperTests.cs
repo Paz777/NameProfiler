@@ -81,4 +81,22 @@ public class Tests
         lifeAreas1.WordlyGoals.Should().Be(wordlyGoals);
         lifeAreas1.SpiritualGoals.Should().Be(spiritualGoals);
     }
+
+    [TestCase("4-4", "7-7", "9-9", "10-1", "7-7", "8-8", "9-9")]
+    public void Should_Caculate_Numbers_For_Soul_Destiny(string worldlyChallenges, string spiritualChallenges, string worldlyTalents,
+        string spiritualTalents, string wordlyGoals, string spiritualGoals, string expecetdSoulDestiny)
+    {
+        LifeAreas lifeArea = new LifeAreas();
+        LifeAreasCalculator lifeAreasCalculator = new LifeAreasCalculator();
+
+        lifeArea.WorldlyChallenges = worldlyChallenges;
+        lifeArea.SpiritualChallenges = spiritualChallenges;
+        lifeArea.WorldlyTalents = worldlyTalents;
+        lifeArea.SpiritualTalents = spiritualTalents;
+        lifeArea.WordlyGoals = wordlyGoals;
+        lifeArea.SpiritualGoals = spiritualGoals;
+        lifeArea.SoulDestiny = lifeAreasCalculator.CalculateSoulDestiny(lifeArea);
+
+        lifeArea.SoulDestiny.Should().Be(expecetdSoulDestiny);
+    }
 }

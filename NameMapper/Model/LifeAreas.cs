@@ -8,10 +8,13 @@
         public string SpiritualTalents;
         public string WordlyGoals;
         public string SpiritualGoals;
+        public string SoulDestiny;
 
         public LifeAreas()
 		{
 		}
-	}
+
+        
+    }
 }
 
