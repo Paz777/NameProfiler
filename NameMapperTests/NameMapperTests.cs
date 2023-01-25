@@ -67,6 +67,7 @@ public class Tests
 
     [TestCase("13 10 8 1 5 12 6 10 12 12 10 1 13 15 1 13 17 15 6 14", "11-2", "13-4", "21-3", "8-8", "5-5", "10-1", TestName = "Should_Allocate_Numbers_Sequentially_To_The_Corresponding_Life_Areas_And_Calculate_For_Micheal")]
     [TestCase("1 12 1 14 10 6 14 1 22 1 14 6 16 12 4 13 1 14", "4-4", "7-7", "9-9", "10-1", "7-7", "8-8", TestName = "Should_Allocate_Numbers_Sequentially_To_The_Corresponding_Life_Areas_And_Calculate_For_Alan")]
+    [TestCase("1 12 1 14 10 6 14 1 22 1 14 6 4 12 4 13 1 14", "19-1", "7-7", "9-9", "10-1", "7-7", "8-8", TestName = "Should_Allocate_Numbers_Sequentially_To_The_Corresponding_Life_Areas_And_Deal_With_No_19")]
     public void Should_Allocate_Numbers_Sequentially_To_The_Corresponding_Life_Areas_And_Calculate(string numbers, string worldlyChallenges,
         string spiritualChallenges, string worldlyTalents, string spiritualTalents, string wordlyGoals, string spiritualGoals)
     {

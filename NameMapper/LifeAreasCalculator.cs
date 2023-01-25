@@ -68,14 +68,17 @@ namespace NameMapper
         {
             int sum = lifeArea.Trim().Split(' ').Sum(x => Int32.Parse(x.ToString()));
             int lifeAreaNumber = RecalculateIfNumberGreaterThan22(sum);
-            return lifeAreaNumber.ToString() + "-" + lifeAreaNumber.ToString().Sum(x => Int32.Parse(x.ToString()));
+            return lifeAreaNumber.ToString() + "-" + RecalculateIfNumberEqualTo19(lifeAreaNumber);
+        }
+
+        private int RecalculateIfNumberEqualTo19(int number)
+        {
+            return (number == 19) ? 1 : number.ToString().Sum(x => Int32.Parse(x.ToString()));
         }
 
         private int RecalculateIfNumberGreaterThan22(int number)
         {
-            if (number > 22)
-                number = number.ToString().Sum(x => Int32.Parse(x.ToString()));
-            return number;
+            return (number > 22) ? number.ToString().Sum(x => Int32.Parse(x.ToString())) : number;
         }
     }
 }
