@@ -83,22 +83,41 @@ public class Tests
         lifeAreas1.SpiritualGoals.Should().Be(spiritualGoals);
     }
 
-    [TestCase("4-4", "7-7", "9-9", "10-1", "7-7", "8-8", "9-9")]
-    [TestCase("4-2", "3-2", "2-2", "5-2", "3-1", "2-1", "19-1")]
+    [TestCase("4-4", "7-7", "9-9", "10-1", "7-7", "8-8", "9-9", TestName = "Should_Caculate_Numbers_For_Soul_Destiny")]
+    [TestCase("4-2", "3-2", "2-2", "5-2", "3-1", "2-1", "19-1", TestName = "Should_Caculate_Numbers_For_Soul_Destiny_And_Deal_With_No_19")]
     public void Should_Caculate_Numbers_For_Soul_Destiny(string worldlyChallenges, string spiritualChallenges, string worldlyTalents,
         string spiritualTalents, string wordlyGoals, string spiritualGoals, string expecetdSoulDestiny)
     {
-        LifeAreas lifeArea = new LifeAreas();
-        LifeAreasCalculator lifeAreasCalculator = new LifeAreasCalculator();
+        LifeAreas lifeAreas1 = new LifeAreas();
+        LifeAreasCalculator lifeAreasCalculator1 = new LifeAreasCalculator();
 
-        lifeArea.WorldlyChallenges = worldlyChallenges;
-        lifeArea.SpiritualChallenges = spiritualChallenges;
-        lifeArea.WorldlyTalents = worldlyTalents;
-        lifeArea.SpiritualTalents = spiritualTalents;
-        lifeArea.WordlyGoals = wordlyGoals;
-        lifeArea.SpiritualGoals = spiritualGoals;
-        lifeArea.SoulDestiny = lifeAreasCalculator.CalculateSoulDestiny(lifeArea);
+        lifeAreas1.WorldlyChallenges = worldlyChallenges;
+        lifeAreas1.SpiritualChallenges = spiritualChallenges;
+        lifeAreas1.WorldlyTalents = worldlyTalents;
+        lifeAreas1.SpiritualTalents = spiritualTalents;
+        lifeAreas1.WordlyGoals = wordlyGoals;
+        lifeAreas1.SpiritualGoals = spiritualGoals;
 
-        lifeArea.SoulDestiny.Should().Be(expecetdSoulDestiny);
+        lifeAreas1.SoulDestiny = lifeAreasCalculator1.CalculateSoulDestiny(lifeAreas1);
+        lifeAreas1.SoulDestiny.Should().Be(expecetdSoulDestiny);
+    }
+
+    [TestCase("4-4", "7-7", "9-9", "10-1", "7-7", "8-8", "9-9", "7,9")]
+    public void Should_Calculate_Dominant_Vibration_Numbers(string worldlyChallenges, string spiritualChallenges, string worldlyTalents,
+        string spiritualTalents, string wordlyGoals, string spiritualGoals, string soulDestiny, string dominantVibration)
+    {
+        LifeAreas lifeAreas1 = new LifeAreas();
+        LifeAreasCalculator lifeAreasCalculator1 = new LifeAreasCalculator();
+
+        lifeAreas1.WorldlyChallenges = worldlyChallenges;
+        lifeAreas1.SpiritualChallenges = spiritualChallenges;
+        lifeAreas1.WorldlyTalents = worldlyTalents;
+        lifeAreas1.SpiritualTalents = spiritualTalents;
+        lifeAreas1.WordlyGoals = wordlyGoals;
+        lifeAreas1.SpiritualGoals = spiritualGoals;
+        lifeAreas1.SoulDestiny = soulDestiny;
+
+        lifeAreas1.DominantVibration = lifeAreasCalculator1.CalculateDominantVibration(lifeAreas1);
+        lifeAreas1.DominantVibration.Should().Be(dominantVibration);
     }
 }

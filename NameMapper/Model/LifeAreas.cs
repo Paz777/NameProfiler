@@ -9,6 +9,7 @@
         public string WordlyGoals = string.Empty;
         public string SpiritualGoals = string.Empty;
         public string SoulDestiny = string.Empty;
+        public string DominantVibration = string.Empty;
 
         public LifeAreas()
 		{
