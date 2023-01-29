@@ -36,7 +36,7 @@ public class Tests
     [TestCase("1234", "1 2 3 4", TestName = "Should_Not_Convert_Numerical_Value")]
     [TestCase("", "", TestName = "Should_Not_Convert_Empty_String")]
     [TestCase("%$£", "% $ £", TestName = "Should_Not_Convert_Other_Invalid_Characters")]
-    [TestCase(null, null, TestName = "Should_Not_Convert_Null")]
+    [TestCase(null, "", TestName = "Should_Not_Convert_Null")]
     public void Should_Not_Convert_Invalid_Values(string name, string nameConverted)
     {
         mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);

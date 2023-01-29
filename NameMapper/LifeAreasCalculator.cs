@@ -17,13 +17,13 @@ namespace NameMapper
 
         public LifeAreas AllocateNumbersToLifeAreas(string numbers)
         {
-            string WorldlyChallenges = "";
-            string SpiritualChallenges = "";
-            string WorldlyTalents = "";
-            string SpiritualTalents = "";
-            string WordlyGoals ="";
-            string SpiritualGoals = "";
-            int lifeAreaPosition = 0;
+            var WorldlyChallenges = "";
+            var SpiritualChallenges = "";
+            var WorldlyTalents = "";
+            var SpiritualTalents = "";
+            var WordlyGoals ="";
+            var SpiritualGoals = "";
+            var lifeAreaPosition = 0;
 
             foreach (string number in numbers.Split(' '))
             {
@@ -85,8 +85,8 @@ namespace NameMapper
 
         private string CalculateLifeArea(string lifeAreas)
         {
-            int sum = lifeAreas.Trim().Split(' ').Sum(x => Int32.Parse(x.ToString()));
-            int lifeAreaNumber = RecalculateIfNumberGreaterThan22(sum);
+            var sum = lifeAreas.Trim().Split(' ').Sum(x => Int32.Parse(x.ToString()));
+            var lifeAreaNumber = RecalculateIfNumberGreaterThan22(sum);
             return lifeAreaNumber.ToString() + "-" + RecalculateIfNumberEqualTo19(lifeAreaNumber);
         }
 

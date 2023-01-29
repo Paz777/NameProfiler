@@ -16,7 +16,7 @@ namespace NameMapper
             {"th",22},
         };
 
-        Dictionary<string, int> lastLetter = new Dictionary<string, int>()
+        Dictionary<string, int> lastLetters = new Dictionary<string, int>()
         {
             {"m",12},
             {"p",12},
@@ -54,31 +54,31 @@ namespace NameMapper
 
         public string ConvertCombinationLetter(string name)
 		{
+            var nameWithSpaces = string.Empty;
             if (!string.IsNullOrEmpty(name))
             {
-                var spacedName = string.Join("", name.Select(letter => letter + " ").ToArray()).ToLower().Trim();
-                for (int i = 0; i < spacedName.Length - 2; i++)
+                nameWithSpaces = string.Join("", name.Select(x => x + " ").ToArray()).ToLower().Trim();
+                for (int i = 0; i < nameWithSpaces.Length - 2; i++)
                 {
-                    string nameLetters = spacedName[i] + "" + spacedName[i + 2];
-                    if (combinationLetters.ContainsKey(nameLetters))
+                    var combinedLetters = nameWithSpaces[i] + "" + nameWithSpaces[i + 2];
+                    if (combinationLetters.ContainsKey(combinedLetters))
                     {
-                        spacedName = spacedName.Replace(spacedName[i] + " " + spacedName[i + 2], combinationLetters[nameLetters].ToString());
+                        nameWithSpaces = nameWithSpaces.Replace(nameWithSpaces[i] + " " + nameWithSpaces[i + 2], combinationLetters[combinedLetters].ToString());
                     }
                 }
-                name = spacedName;
             }
-            return name;
+            return nameWithSpaces;
         }
 
         public string ConvertLastLetter(string name)
         {
-            return name.Substring(0, name.Length - 1) + lastLetter[name.Last().ToString()].ToString();
+            return name.Substring(0, name.Length - 1) + lastLetters[name.Last().ToString()].ToString();
         }
 
         public string ConvertSingleLetter(string name)
         {
-            string convertedName = "";
-            string[] nameSplit = name.Split(" ");
+            var convertedName = "";
+            var nameSplit = name.Split(" ");
             for (int i = 0; i < nameSplit.Length; i++)
             {
                 if (int.TryParse(nameSplit[i], out int number))
