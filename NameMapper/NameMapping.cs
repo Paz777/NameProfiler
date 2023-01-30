@@ -57,7 +57,8 @@ namespace NameMapper
             var nameWithSpaces = string.Empty;
             if (!string.IsNullOrEmpty(name))
             {
-                nameWithSpaces = string.Join("", name.Select(x => x + " ").ToArray()).ToLower().Trim();
+                nameWithSpaces = string.Join("", name.Where(x => x != ' ').ToArray());
+                nameWithSpaces = string.Join("", nameWithSpaces.Select(x => x + " ").ToArray()).ToLower().Trim();
                 for (int i = 0; i < nameWithSpaces.Length - 2; i++)
                 {
                     var combinedLetters = nameWithSpaces[i] + "" + nameWithSpaces[i + 2];
@@ -66,13 +67,18 @@ namespace NameMapper
                         nameWithSpaces = nameWithSpaces.Replace(nameWithSpaces[i] + " " + nameWithSpaces[i + 2], combinationLetters[combinedLetters].ToString());
                     }
                 }
+                return nameWithSpaces;
             }
-            return nameWithSpaces;
+            return name;
         }
 
         public string ConvertLastLetter(string name)
         {
-            return name.Substring(0, name.Length - 1) + lastLetters[name.Last().ToString()].ToString();
+            if (lastLetters.ContainsKey(name.Last().ToString()))
+            {
+                return name.Substring(0, name.Length - 1) + lastLetters[name.Last().ToString()].ToString();
+            }
+            return name;   
         }
 
         public string ConvertSingleLetter(string name)

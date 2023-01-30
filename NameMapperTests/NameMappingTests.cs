@@ -5,7 +5,7 @@ using FluentAssertions;
 
 namespace NameMapperTests;
 
-public class Tests
+public class NameMappingTests
 {
     NameMapping mapper;
 
@@ -36,8 +36,14 @@ public class Tests
     [TestCase("1234", "1 2 3 4", TestName = "Should_Not_Convert_Numerical_Value")]
     [TestCase("", "", TestName = "Should_Not_Convert_Empty_String")]
     [TestCase("%$£", "% $ £", TestName = "Should_Not_Convert_Other_Invalid_Characters")]
-    [TestCase(null, "", TestName = "Should_Not_Convert_Null")]
+    [TestCase(null, null, TestName = "Should_Not_Convert_Null")]
     public void Should_Not_Convert_Invalid_Values(string name, string nameConverted)
+    {
+        mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);
+    }
+
+    [TestCase("Paz Sonagara", "p a z s o n a g a r a", TestName = "Should_Convert_Name_To_Correct_Spaced_Letters")]
+    public void Should_Convert_Name_To_Correct_Spaced_Letters(string name, string nameConverted)
     {
         mapper.ConvertCombinationLetter(name).Should().Be(nameConverted);
     }
@@ -53,6 +59,12 @@ public class Tests
     [TestCase("p a m", "p a 12", TestName = "Should_Convert_Last_Letter_M_To_Corresponding_Numerical_Value")]
     [TestCase("i n d r 5 p", "i n d r 5 12", TestName = "Should_Convert_Last_Letter_P_Not_Other_Numbers_To_Corresponding_Numerical_Value")]
     public void Should_Convert_Last_Letter_To_Corresponding_Numerical_Value(string name, string nameConverted)
+    {
+        mapper.ConvertLastLetter(name).Should().Be(nameConverted);
+    }
+
+    [TestCase("p a z", "p a z", TestName = "Should_Not_Convert_Last_Letter_Z_As_It_Is_Not_Valid")]
+    public void Should_Not_Convert_Last_Letter_To_Corresponding_Numerical_Value(string name, string nameConverted)
     {
         mapper.ConvertLastLetter(name).Should().Be(nameConverted);
     }
